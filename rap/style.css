@@ -1,9 +1,9 @@
-
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   min-height: 100vh;
 }
 
@@ -12,7 +12,7 @@ body {
   background: wheat;
   display: flex;
   flex-direction: column;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   gap: 16px;
   justify-content: center;
   margin: 0;
@@ -43,7 +43,7 @@ h1 {
 }
 
 .back.show {
-  opacity: .2;
+  opacity: 0.2;
 }
 
 body > main {
@@ -61,7 +61,7 @@ body > main {
   color: white;
   height: 300px;
   position: relative;
-  transition: .3s cubic-bezier(.13,1.02,.43,1.89);
+  transition: 0.3s cubic-bezier(0.13, 1.02, 0.43, 1.89);
   width: 5rem;
 }
 
@@ -82,7 +82,7 @@ body > main {
 .rapper::after {
   background: linear-gradient(to bottom right, var(--color-1), var(--color-2));
   border-radius: inherit;
-  content: '';
+  content: "";
   display: block;
   height: 100%;
   left: 0;
@@ -91,7 +91,7 @@ body > main {
   pointer-events: none;
   position: absolute;
   top: 0;
-  transition: .3s cubic-bezier(.13,1.02,.43,1.89);
+  transition: 0.3s cubic-bezier(0.13, 1.02, 0.43, 1.89);
   width: 100%;
   z-index: 2;
 }
@@ -105,14 +105,14 @@ body > main {
 .rapper img {
   border-radius: inherit;
   display: block;
-  filter: grayscale(1) brightness(.4);
+  filter: grayscale(1) brightness(0.4);
   height: 100%;
   left: 0;
   object-fit: cover;
   object-position: center;
   position: absolute;
   top: 0;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   width: 100%;
   z-index: 1;
 }
@@ -125,13 +125,35 @@ body > main {
   position: absolute;
   rotate: -90deg;
   transform-origin: left;
-  transition: all .3s cubic-bezier(.13,1.02,.43,1.89);
+  transition: all 0.3s cubic-bezier(0.13, 1.02, 0.43, 1.89);
   translate: 0 16px;
   white-space: nowrap;
   z-index: 2;
 }
 
 .rapper:hover h2 {
-  opacity: .5;
+  opacity: 0.5;
   translate: 0;
+}
+
+.mute-toggle {
+  all: unset;
+  bottom: 16px;
+  cursor: pointer;
+  opacity: 0.5;
+  position: fixed;
+  right: 16px;
+}
+
+.mute-toggle:hover {
+  opacity: 1;
+}
+
+.mute-toggle.mute span:first-child,
+.mute-toggle span:last-child {
+  display: none;
+}
+
+.mute-toggle.mute span:last-child {
+  display: block;
 }

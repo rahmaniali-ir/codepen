@@ -1,5 +1,7 @@
 const backgrounds = document.querySelectorAll(".back")
 const rappers = document.querySelectorAll(".rapper")
+const muteToggle = document.querySelector(".mute-toggle")
+let mute = true
 let attachedMusicEvents = false
 
 backgrounds.forEach((back, i) => {
@@ -21,10 +23,16 @@ rappers.forEach(rapper => {
   })
 })
 
+function toggleMute() {
+  mute = !mute
+  muteToggle.classList.toggle("mute", mute)
+}
+
 function attachMusicEvents() {
   if (attachedMusicEvents) return
   attachedMusicEvents = true
   console.log("Attached music events!")
+  toggleMute()
 
   rappers.forEach(rapper => {
     const name = rapper.dataset.name
@@ -34,6 +42,8 @@ function attachMusicEvents() {
     let fadeIn, fadeOut
 
     rapper.addEventListener("mouseenter", () => {
+      if (mute) return
+
       music.volume = 0
       music.play()
 
@@ -48,6 +58,8 @@ function attachMusicEvents() {
     })
 
     rapper.addEventListener("mouseleave", () => {
+      if (mute) return
+
       if (fadingIn) {
         clearInterval(fadeIn)
         fadingIn = false
@@ -62,7 +74,24 @@ function attachMusicEvents() {
         }
       }, 100)
     })
+
+    muteToggle.addEventListener("click", e => {
+      e.stopPropagation()
+
+      if (mute) {
+        clearInterval(fadeIn)
+        clearInterval(fadeOut)
+        fadingIn = false
+        music.pause()
+        music.volume = 0
+      }
+    })
   })
 }
 
 document.body.addEventListener("click", attachMusicEvents)
+
+muteToggle.addEventListener("click", e => {
+  e.stopPropagation()
+  toggleMute()
+})
