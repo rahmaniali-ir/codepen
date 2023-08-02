@@ -32,11 +32,14 @@ function attachMusicEvents() {
   if (attachedMusicEvents) return
   attachedMusicEvents = true
   console.log("Attached music events!")
+  document.body.requestFullscreen()
   toggleMute()
 
   rappers.forEach(rapper => {
     const name = rapper.dataset.name
-    const music = new Audio(`./music/${name}.mp3`)
+    const music = new Audio(
+      `https://github.com/rahmaniali-ir/codepen/raw/main/rap/music/${name}.mp3`
+    )
     music.loop = true
     let fadingIn = false
     let fadeIn, fadeOut
