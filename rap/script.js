@@ -32,7 +32,6 @@ function attachMusicEvents() {
   if (attachedMusicEvents) return
   attachedMusicEvents = true
   console.log("Attached music events!")
-  document.body.requestFullscreen()
   toggleMute()
 
   rappers.forEach(rapper => {
